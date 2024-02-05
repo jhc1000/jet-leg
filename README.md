@@ -47,7 +47,7 @@ Other dependencies:
 
 after cloning remember to do in the jetleg folder:
 ```
-git submodules update --init --recursive
+git submodule update --init --recursive
 ```
 
 ## Optional dependencies:
