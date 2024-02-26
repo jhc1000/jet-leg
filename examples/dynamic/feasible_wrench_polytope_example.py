@@ -8,6 +8,10 @@ Created on Tue Jun 12 10:54:31 2018
 import numpy as np
 
 from numpy import array
+
+import sys 
+sys.path.append('/home/chan/feasible_region_ws/jet-leg')
+
 from jet_leg.plotting.plotting_tools import Plotter
 import random
 from jet_leg.computational_geometry.math_tools import Math
@@ -67,9 +71,9 @@ stanceFeet = [0,1,1,1]
 randomSwingLeg = random.randint(0,3)
 tripleStance = False # if you want you can define a swing leg using this variable
 if tripleStance:
-    print 'Swing leg', randomSwingLeg
+    print('Swing leg', randomSwingLeg)
     stanceFeet[randomSwingLeg] = 0
-print 'stanceLegs ' ,stanceFeet
+print('stanceLegs ' ,stanceFeet)
 
 ''' now I define the normals to the surface of the contact points. By default they are all vertical now'''
 axisZ= array([[0.0], [0.0], [1.0]])
@@ -110,12 +114,12 @@ if not isIKoutOfWorkSpace:
     '''I now check whether the given CoM configuration is dynamically stable or not (see "Feasible Wrench Polytope")'''
     start = time.time()
     isFWPStable = fwp.checkDynamicStability(FWP, w_gi)
-    print "dynamic stability check time", time.time() - start
+    print("dynamic stability check time", time.time() - start)
 
     '''I now check whether the given CoM configuration is statically stable or not (see "Feasible Region")'''
     start = time.time()
     isStaticallyStable, contactForces, forcePolytopes = comp_dyn.check_equilibrium(params)
-    print "static stability check time", time.time() - start
+    print("static stability check time", time.time() - start)
 else:
     isFWPStable = False
     isStaticallyStable = False

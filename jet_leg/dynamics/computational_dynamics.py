@@ -322,6 +322,7 @@ class ComputationalDynamics:
         stanceLegs = iterative_projection_params.getStanceFeet()
         stanceIndex = iterative_projection_params.getStanceIndex(stanceLegs)
         if len(stanceIndex) < 1:
+            print("NoFeetOnGround")
             return False, False, False
 
         if iterative_projection_params.plane_normal == [0,0,1]:
@@ -330,11 +331,13 @@ class ComputationalDynamics:
             self.eq, self.ineq, actuation_polygons, isIKoutOfWorkSpace = self.setup_general_plane_iterative_projection(iterative_projection_params, saturate_normal_force)
 
         if isIKoutOfWorkSpace:
+            print("IKoutOfWorkSpace")
             return False, False, False
         else:
             try:
                 if iterative_projection_params.plane_normal == [0,0,1]:
-                    vertices_WF = pypoman.project_polytope(proj, self.ineq, self.A_y, self.eq, method='bretl', max_iter=500, init_angle=0.0)
+                    # vertices_WF = pypoman.project_polytope(proj, self.ineq, self.A_y, self.eq, method='bretl', max_iter=500, init_angle=0.0)
+                    vertices_WF = pypoman.project_polytope(proj, self.ineq, self.eq, method='bretl', max_iter=500, init_angle=0.0)
                 else:
                     vertices_WF = pypoman.project_polytope_general_plane(self.ineq, self.eq, max_iter=500, init_angle=0.0)
             except (ValueError, Exception) as e:

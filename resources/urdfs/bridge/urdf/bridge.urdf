@@ -1,0 +1,957 @@
+<?xml version="1.0" ?>
+<robot
+  name="bridge">
+
+  <!-- Body -->
+  
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.031757 0.00040855 0.053605"
+        rpy="0.10472 0 0" />
+      <mass
+        value="5.462" />
+      <inertia
+        ixx="0.045255813"
+        ixy="-0.001482582"
+        ixz="0.001451185"
+        iyy="0.174493725"
+        iyz="-0.000661239"
+        izz="0.168306918"/>
+      
+    </inertial>
+    
+  </link>
+
+  <link
+    name="Ascender">
+    <inertial>
+      <origin
+        xyz="0.225360259928314 -0.14013148724829 0.00747210915048598"
+        rpy="0 0 0" />
+      <mass
+        value="0.0096051293097888" />
+      <inertia
+        ixx="3.80569253248677E-06"
+        ixy="-1.45469450180021E-07"
+        ixz="6.07498806567572E-08"
+        iyy="4.31030423728637E-06"
+        iyz="6.52861222348882E-09"
+        izz="7.86068685624286E-06" />
+    </inertial>
+    
+  </link>
+  <link
+    name="Motor1">
+    <inertial>
+      <origin
+        xyz="-0.0103522541269763 0.0573853944219954 0.00104798461886406"
+        rpy="0 0 0" />
+      <mass
+        value="1.44021852676917" />
+      <inertia
+        ixx="0.00183582012205472"
+        ixy="-2.49196646836087E-06"
+        ixz="-1.90519506899772E-05"
+        iyy="0.00369364996825823"
+        iyz="-6.60391254784909E-06"
+        izz="0.00214963025665886" />
+    </inertial>
+    
+  </link>
+  <joint
+    name="Motor1"
+    type="fixed">
+    <origin
+      xyz="0 0.05105 0"
+      rpy="0 0 0" />
+    <parent
+      link="Ascender" />
+    <child
+      link="Motor1" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-180"
+      upper="180"
+      effort="10"
+      velocity="5" />
+  </joint>
+  <link
+    name="Motor2">
+    <inertial>
+      <origin
+        xyz="-0.0103539759241644 -0.057392207747404 0.00105567416347691"
+        rpy="0 0 0" />
+      <mass
+        value="1.44021859277875" />
+      <inertia
+        ixx="0.0018358289298513"
+        ixy="2.51165172733215E-06"
+        ixz="-1.90649287787671E-05"
+        iyy="0.00369364983368484"
+        iyz="6.61301046546018E-06"
+        izz="0.00214962163717553" />
+    </inertial>
+    
+  </link>
+  <joint
+    name="Motor2"
+    type="fixed">
+    <origin
+      xyz="0 -0.05105 0"
+      rpy="0 0 0" />
+    <parent
+      link="Ascender" />
+    <child
+      link="Motor2" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-180"
+      upper="180"
+      effort="10"
+      velocity="5" />
+  </joint>
+  <link
+    name="encoder_abs1">
+    <inertial>
+      <origin
+        xyz="0.0238980502922851 0.0236096237338305 -0.0864988566299386"
+        rpy="0 0 0" />
+      <mass
+        value="0.112684040371203" />
+      <inertia
+        ixx="5.55772409607545E-05"
+        ixy="4.32029604409502E-09"
+        ixz="3.32496956109118E-12"
+        iyy="3.24508800861573E-05"
+        iyz="5.16967725970968E-09"
+        izz="5.56013106096076E-05" />
+    </inertial>
+    
+  </link>
+  <joint
+    name="encoder_abs1"
+    type="fixed">
+    <origin
+      xyz="0.12914 0.22217 0.0"
+      rpy="0 0 0" />
+    <parent
+      link="Ascender" />
+    <child
+      link="encoder_abs1" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-180"
+      upper="180"
+      effort="10"
+      velocity="5" />
+  </joint>
+  <link
+    name="encoder_abs2">
+    <inertial>
+      <origin
+        xyz="0.0238980323122166 -0.0236096419335422 0.0864988566299394"
+        rpy="0 0 0" />
+      <mass
+        value="0.11268404037117" />
+      <inertia
+        ixx="5.55772409541503E-05"
+        ixy="-4.33790805877805E-09"
+        ixz="-3.32102624752458E-12"
+        iyy="3.24508800927471E-05"
+        iyz="5.16967726737243E-09"
+        izz="5.56013106095936E-05" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="encoder_abs2"
+    type="fixed">
+    <origin
+      xyz="0.12914 -0.22217 0.0"
+      rpy="0 0 0" />
+    <parent
+      link="Ascender" />
+    <child
+      link="encoder_abs2" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-180"
+      upper="180"
+      effort="10"
+      velocity="5" />
+  </joint>
+  <link
+    name="encoder_rs2">
+    <inertial>
+      <origin
+        xyz="0.00419303173304877 0.00136855476456543 -0.00802789084952034"
+        rpy="0 0 0" />
+      <mass
+        value="0.0096051293097888" />
+      <inertia
+        ixx="3.80569253248677E-06"
+        ixy="-1.45469450180021E-07"
+        ixz="6.07498806567572E-08"
+        iyy="4.31030423728637E-06"
+        iyz="6.5286122234888E-09"
+        izz="7.86068685624286E-06" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="encoder_rs2"
+    type="fixed">
+    <origin
+      xyz="0.22117 -0.1415 0.0155"
+      rpy="0 0 0" />
+    <parent
+      link="Ascender" />
+    <child
+      link="encoder_rs2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-180"
+      upper="180"
+      effort="10"
+      velocity="5" />
+  </joint>
+  <link
+    name="encoder_rs1">
+    <inertial>
+      <origin
+        xyz="0.00419303069081634 -0.00136855795779448 -0.00802789084952021"
+        rpy="0 0 0" />
+      <mass
+        value="0.0096051293097888" />
+      <inertia
+        ixx="3.80569275405339E-06"
+        ixy="1.45469834470034E-07"
+        ixz="6.07498756847176E-08"
+        iyy="4.31030401571974E-06"
+        iyz="-6.52865848791928E-09"
+        izz="7.86068685624285E-06" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="encoder_rs1"
+    type="fixed">
+    <origin
+      xyz="0.22117 0.1415 0.0155"
+      rpy="0 0 0" />
+    <parent
+      link="Ascender" />
+    <child
+      link="encoder_rs1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-180"
+      upper="180"
+      effort="10"
+      velocity="5" />
+  </joint>
+  
+  <joint name = "ascender_joint" type = "fixed">
+    <origin
+      xyz="0 0 -0.2"
+      rpy="0 0 0" />
+    <parent link = "Ascender"/>
+    <child link = "base_link"/>
+  </joint>
+  
+  <link
+    name="LF_hr">
+    <inertial>
+      <origin
+        xyz="-0.00064 -0.00902 -0.02338"
+        rpy="0 0 0" />
+      <mass
+        value="1.262" />
+      <inertia
+        ixx="0.002145988"
+        ixy="0.000001667"
+        ixz="7.52E-07"
+        iyy="0.00149516"
+        iyz="-0.000381063"
+        izz="0.001987437" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="LF_hr_joint"
+    type="revolute">
+    <origin
+      xyz="0.25142 0.170 0.0660"
+      rpy="0 3.1416 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="LF_hr" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="77"
+      velocity="3" />
+  </joint>
+  <link
+    name="LF_hp1">
+    <inertial>
+      <origin
+        xyz="0.00424 0 -0.07862"
+        rpy="3.1416 0 0" />
+      <mass
+        value="2.017" />
+      <inertia
+        ixx="0.002812305"
+        ixy="-0.000001194"
+        ixz="-0.000001182"
+        iyy="0.003113101"
+        iyz="0.000222405"
+        izz="0.002478391" />
+    </inertial>
+
+  </link>
+  <joint
+    name="LF_hp1_joint"
+    type="fixed">
+    <origin
+      xyz="0 0.06785 0.0975"
+      rpy="-1.5708 -1.5708 0" />
+    <parent
+      link="LF_hr" />
+    <child
+      link="LF_hp1" />
+  </joint>
+  <link
+    name="LF_hp2">
+    <inertial>
+      <origin
+        xyz="0.12288 -0.000057 0.04567"
+        rpy="3.1416 1.57 -0.12083" />
+      <mass
+        value="2.510" />
+      <inertia
+        ixx="0.046167112"
+        ixy="0.000008451"
+        ixz="0.000065646"
+        iyy="0.044879746"
+        iyz="-0.005843479"
+        izz="0.003323929" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="LF_hp2_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="LF_hp1" />
+    <child
+      link="LF_hp2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.0944"
+      upper="2.0944"
+      effort="77"
+      velocity="3" />
+  </joint>
+  <link
+    name="LF_k">
+    <inertial>
+      <origin
+        xyz="0.12603 -0.00006 0.04368"
+        rpy="3.1416 1.57 0" />
+      <mass
+        value="0.377" />
+      <inertia
+        ixx="0.005710257"
+        ixy="-1.64E-07"
+        ixz="0.000006887"
+        iyy="0.00573476"
+        iyz="0.000095835"
+        izz="0.000092113" />
+    </inertial>
+  
+  </link>
+  <joint
+    name="LF_k_joint"
+    type="revolute">
+    <origin
+      xyz="0.3 0 0.029"
+      rpy="3.1416 0 0" />
+    <parent
+      link="LF_hp2" />
+    <child
+      link="LF_k" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.4434"
+      upper="2.4434"
+      effort="77"
+      velocity="3" />
+  </joint>
+  <link
+    name="LF_w">
+    <inertial>
+      <origin
+        xyz="0.00004 -0.00008 0.00188"
+        rpy="1.57 0 0.7854" />
+      <mass
+        value="0.06" />
+      <inertia
+        ixx="0.002039438"
+        ixy="-0.000002629"
+        ixz="-9E-09"
+        iyy="0.003524325"
+        iyz="0.000001415"
+        izz="0.002039435" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="LF_w_joint"
+    type="fixed">
+    <origin
+      xyz="0.3 0 0"
+      rpy="3.1416 0 0" />
+    <parent
+      link="LF_k" />
+    <child
+      link="LF_w" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <!-- RF (Right Front leg) -->
+
+  <link
+    name="RF_hr">
+    <inertial>
+      <origin
+        xyz="0.00064 0.00902 -0.02338"
+        rpy="0 0 0" />
+      <mass
+        value="1.262" />
+      <inertia
+        ixx="0.002145988"
+        ixy="0.000001667"
+        ixz="-7.52E-07"
+        iyy="0.00149516"
+        iyz="0.000381063"
+        izz="0.001987437" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="RF_hr_joint"
+    type="revolute">
+    <origin
+      xyz="0.25142 -0.170 0.0660"
+      rpy="0 3.1416 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RF_hr" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="77"
+      velocity="3" />
+  </joint>
+  <link
+    name="RF_hp1">
+    <inertial>
+      <origin
+        xyz="0.00424 0 0.07862"
+        rpy="3.1416 0 0" />
+      <mass
+        value="2.017" />
+      <inertia
+        ixx="0.002812305"
+        ixy="-0.000001194"
+        ixz="0.000001182"
+        iyy="0.003113101"
+        iyz="-0.000222405"
+        izz="0.002478391" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="RF_hp1_joint"
+    type="fixed">
+    <origin
+      xyz="0 -0.06785 0.0975"
+      rpy="-1.5708 -1.5708 0" />
+    <parent
+      link="RF_hr" />
+    <child
+      link="RF_hp1" />
+  </joint>
+  <link
+    name="RF_hp2">
+    <inertial>
+      <origin
+        xyz="0.12288 -0.000057 -0.04567"
+        rpy="3.1416 1.57 0.12083" />
+      <mass
+        value="2.510" />
+      <inertia
+        ixx="0.046167112"
+        ixy="-0.000008451"
+        ixz="0.000065646"
+        iyy="0.044879746"
+        iyz="0.005843479"
+        izz="0.003323929" />
+    </inertial>
+    
+  </link>
+  <joint
+    name="RF_hp2_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="RF_hp1" />
+    <child
+      link="RF_hp2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.0944"
+      upper="2.0944"
+      effort="77"
+      velocity="3" />
+  </joint>
+  <link
+    name="RF_k">
+    <inertial>
+      <origin
+        xyz="0.12603 0.00006 -0.04368"
+        rpy="3.1416 1.57 0" />
+      <mass
+        value="0.377" />
+      <inertia
+        ixx="0.005710257"
+        ixy="1.64E-07"
+        ixz="0.000006887"
+        iyy="0.00573476"
+        iyz="-0.000095835"
+        izz="0.000092113" />
+    </inertial>
+  
+  </link>
+  <joint
+    name="RF_k_joint"
+    type="revolute">
+    <origin
+      xyz="0.3 0 -0.029"
+      rpy="3.1416 0 0" />
+    <parent
+      link="RF_hp2" />
+    <child
+      link="RF_k" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.4434"
+      upper="2.4434"
+      effort="77"
+      velocity="3" />
+  </joint>
+  <link
+    name="RF_w">
+    <inertial>
+      <origin
+        xyz="0.00004 0.00008 -0.00188"
+        rpy="1.57 0 0.7854" />
+      <mass
+        value="0.06" />
+      <inertia
+        ixx="0.002039438"
+        ixy="-0.000002629"
+        ixz="9E-09"
+        iyy="0.003524325"
+        iyz="0.000001415"
+        izz="0.002039435" />
+
+        
+    </inertial>
+   
+  </link>
+  <joint
+    name="RF_w_joint"
+    type="fixed">
+    <origin
+      xyz="0.3 0 0"
+      rpy="3.1416 0 0" />
+    <parent
+      link="RF_k" />
+    <child
+      link="RF_w" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <!-- LH (Left Hind leg) -->
+
+  <link
+    name="LH_hr">
+    <inertial>
+      <origin
+        xyz="-0.00064 -0.00902 -0.02338"
+        rpy="0 0 0" />
+      <mass
+        value="1.262" />
+      <inertia
+        ixx="0.002145988"
+        ixy="0.000001667"
+        ixz="7.52E-07"
+        iyy="0.00149516"
+        iyz="-0.000381063"
+        izz="0.001987437" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="LH_hr_joint"
+    type="revolute">
+    <origin
+      xyz="-0.25142 0.170 0.0660"
+      rpy="0 3.1416 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="LH_hr" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="77"
+      velocity="3" />
+  </joint>
+  <link
+    name="LH_hp1">
+    <inertial>
+      <origin
+        xyz="0.00424 0 -0.07862"
+        rpy="3.1416 0 0" />
+      <mass
+        value="2.017" />
+      <inertia
+        ixx="0.002812305"
+        ixy="-0.000001194"
+        ixz="-0.000001182"
+        iyy="0.003113101"
+        iyz="0.000222405"
+        izz="0.002478391" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="LH_hp1_joint"
+    type="fixed">
+    <origin
+      xyz="0 0.06785 0.0975"
+      rpy="-1.5708 -1.5708 0" />
+    <parent
+      link="LH_hr" />
+    <child
+      link="LH_hp1" />
+  </joint>
+  <link
+    name="LH_hp2">
+    <inertial>
+      <origin
+        xyz="0.12288 -0.000057 0.04567"
+        rpy="3.1416 1.57 -0.12083" />
+      <mass
+        value="2.510" />
+      <inertia
+        ixx="0.046167112"
+        ixy="0.000008451"
+        ixz="0.000065646"
+        iyy="0.044879746"
+        iyz="-0.005843479"
+        izz="0.003323929" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="LH_hp2_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="LH_hp1" />
+    <child
+      link="LH_hp2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-5.0944"
+      upper="5.0944"
+      effort="77"
+      velocity="3" />
+  </joint>
+  <link
+    name="LH_k">
+    <inertial>
+      <origin
+        xyz="0.12603 -0.00006 0.04368"
+        rpy="3.1416 1.57 0" />
+      <mass
+        value="0.377" />
+      <inertia
+        ixx="0.005710257"
+        ixy="-1.64E-07"
+        ixz="0.000006887"
+        iyy="0.00573476"
+        iyz="0.000095835"
+        izz="0.000092113" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="LH_k_joint"
+    type="revolute">
+    <origin
+      xyz="0.3 0 0.029"
+      rpy="3.1416 0 0" />
+    <parent
+      link="LH_hp2" />
+    <child
+      link="LH_k" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.4434"
+      upper="2.4434"
+      effort="77"
+      velocity="3" />
+  </joint>
+  <link
+    name="LH_w">
+    <inertial>
+      <origin
+        xyz="0.00004 -0.00008 0.00188"
+        rpy="1.57 0 0.7854" />
+      <mass
+        value="0.06" />
+      <inertia
+        ixx="0.002039438"
+        ixy="-0.000002629"
+        ixz="-9E-09"
+        iyy="0.003524325"
+        iyz="0.000001415"
+        izz="0.002039435" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="LH_w_joint"
+    type="fixed">
+    <origin
+      xyz="0.3 0 0"
+      rpy="3.1416 0 0" />
+    <parent
+      link="LH_k" />
+    <child
+      link="LH_w" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <!-- RH (Right Hind leg) -->
+
+  <link
+    name="RH_hr">
+    <inertial>
+      <origin
+        xyz="0.00064 0.00902 -0.02338"
+        rpy="0 0 0" />
+      <mass
+        value="1.262" />
+      <inertia
+        ixx="0.002145988"
+        ixy="0.000001667"
+        ixz="-7.52E-07"
+        iyy="0.00149516"
+        iyz="0.000381063"
+        izz="0.001987437" />
+    </inertial>
+  
+  </link>
+  <joint
+    name="RH_hr_joint"
+    type="revolute">
+    <origin
+      xyz="-0.25142 -0.170 0.0660"
+      rpy="0 3.1416 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RH_hr" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3"
+      upper="3"
+      effort="77"
+      velocity="3" />
+  </joint>
+  <link
+    name="RH_hp1">
+    <inertial>
+      <origin
+        xyz="0.00424 0 0.07862"
+        rpy="3.1416 0 0" />
+      <mass
+        value="2.017" />
+      <inertia
+        ixx="0.002812305"
+        ixy="-0.000001194"
+        ixz="0.000001182"
+        iyy="0.003113101"
+        iyz="-0.000222405"
+        izz="0.002478391" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="RH_hp1_joint"
+    type="fixed">
+    <origin
+      xyz="0 -0.06785 0.0975"
+      rpy="-1.5708 -1.5708 0" />
+    <parent
+      link="RH_hr" />
+    <child
+      link="RH_hp1" />
+  </joint>
+  <link
+    name="RH_hp2">
+    <inertial>
+      <origin
+        xyz="0.12288 -0.000057 -0.04567"
+        rpy="3.1416 1.57 0.12083" />
+      <mass
+        value="2.510" />
+      <inertia
+        ixx="0.046167112"
+        ixy="-0.000008451"
+        ixz="0.000065646"
+        iyy="0.044879746"
+        iyz="0.005843479"
+        izz="0.003323929" />
+    </inertial>
+    
+  </link>
+  <joint
+    name="RH_hp2_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="RH_hp1" />
+    <child
+      link="RH_hp2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.0944"
+      upper="3.0944"
+      effort="77"
+      velocity="3" />
+  </joint>
+  <link
+    name="RH_k">
+    <inertial>
+      <origin
+        xyz="0.12603 0.00006 -0.04368"
+        rpy="3.1416 1.57 0" />
+      <mass
+        value="0.377" />
+      <inertia
+        ixx="0.005710257"
+        ixy="1.64E-07"
+        ixz="0.000006887"
+        iyy="0.00573476"
+        iyz="-0.000095835"
+        izz="0.000092113" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="RH_k_joint"
+    type="revolute">
+    <origin
+      xyz="0.3 0 -0.029"
+      rpy="3.1416 0 0" />
+    <parent
+      link="RH_hp2" />
+    <child
+      link="RH_k" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.4434"
+      upper="2.4434"
+      effort="77"
+      velocity="3" />
+  </joint>
+  <link
+    name="RH_w">
+    <inertial>
+      <origin
+        xyz="0.00004 0.00008 -0.00188"
+        rpy="1.57 0 0.7854" />
+      <mass
+        value="0.06" />
+      <inertia
+        ixx="0.002039438"
+        ixy="-0.000002629"
+        ixz="9E-09"
+        iyy="0.003524325"
+        iyz="0.000001415"
+        izz="0.002039435" />
+    </inertial>
+   
+  </link>
+  <joint
+    name="RH_w_joint"
+    type="fixed">
+    <origin
+      xyz="0.3 0 0"
+      rpy="3.1416 0 0" />
+    <parent
+      link="RH_k" />
+    <child
+      link="RH_w" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+</robot>

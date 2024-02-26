@@ -7,6 +7,9 @@ Created on Tue Jun 12 10:54:31 2018
 
 import numpy as np
 
+import sys 
+sys.path.append('/home/chan/feasible_region_ws/jet-leg')
+
 from numpy import array
 from jet_leg.plotting.plotting_tools import Plotter
 import random
@@ -19,6 +22,9 @@ from jet_leg.plotting.arrow3D import Arrow3D
 
 plt.close('all')
 math = Math()
+
+''' Set the robot's name (either 'hyq', 'hyqreal' or 'anymal')'''
+robot_name = 'hyq'
 
 ''' number of generators, i.e. rays/edges used to linearize the friction cone '''
 ng = 4
@@ -60,9 +66,9 @@ stanceFeet = [1, 1, 1, 1]
 randomSwingLeg = random.randint(0, 3)
 tripleStance = False  # if you want you can define a swing leg using this variable
 if tripleStance:
-    print 'Swing leg', randomSwingLeg
+    print('Swing leg', randomSwingLeg)
     stanceFeet[randomSwingLeg] = 0
-print 'stanceLegs ', stanceFeet
+print('stanceLegs ', stanceFeet)
 
 ''' now I define the normals to the surface of the contact points. By default they are all vertical now'''
 axisZ = array([[0.0], [0.0], [1.0]])
@@ -76,7 +82,7 @@ normals = np.vstack([n1, n2, n3, n4])
 ''' extForceW is an optional external pure force (no external torque for now) applied on the CoM of the robot.'''
 extForceW = np.array([0.0, 0.0, 0.0])  # units are Nm
 
-comp_dyn = ComputationalDynamics('anymal')
+comp_dyn = ComputationalDynamics(robot_name)
 
 '''You now need to fill the 'params' object with all the relevant 
     informations needed for the computation of the IP'''
@@ -126,7 +132,7 @@ for j in range(0,
     ax.scatter(contacts[idx, 0], contacts[idx, 1], 0.0, c='k', s=100)
     ax.add_artist(a)
 
-print 'sum of vertical forces is', fz_tot
+print('sum of vertical forces is', fz_tot)
 
 ''' plotting Iterative Projection points '''
 plotter = Plotter()

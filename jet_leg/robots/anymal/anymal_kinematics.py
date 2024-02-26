@@ -14,7 +14,7 @@ import yaml
 class anymalKinematics():
     def __init__(self):
         self.PKG = os.path.dirname(os.path.abspath(__file__)) + '/../../../resources/urdfs/anymal/'
-        self.URDF = self.PKG + 'urdf/anymal_boxy.urdf'
+        self.URDF = self.PKG + 'urdf/anymal.urdf'
         self.FEET = self.PKG + 'robot_data.yaml'
         if self.PKG is None:
             self.robot = RobotWrapper.BuildFromURDF(self.URDF)

@@ -33,7 +33,7 @@ A = numpy.array([
 [0,  0,  1,  0,  0,  1,  0,  0,  1,  0,  0,  1]])
 b = numpy.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 2, 2, 1, 2, 3])
 vertices = pypoman.compute_polytope_vertices(A, b)
-print vertices
+print(vertices)
 #unitTest = unittest()
 #unitTest.assertAlmostEquals(388, numpy.size(vertices,0))self
     

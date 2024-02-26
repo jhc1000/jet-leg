@@ -17,7 +17,7 @@ import os
 from jet_leg.robots.dog_interface import DogInterface
 from jet_leg.dynamics.rigid_body_dynamics import RigidBodyDynamics
 
-class HyQKinematics:
+class BridgeKinematics:
     def __init__(self):
         
         self.dog = DogInterface()
@@ -119,11 +119,11 @@ class HyQKinematics:
 
 
         if sys.version_info[:2] == (2, 7):
-            self.PKG = os.path.dirname(os.path.abspath(__file__)) + '/../../../resources/urdfs/{}/'.format('hyq')
-            self.URDF = self.PKG + 'urdf/{}.urdf'.format('hyq')
+            self.PKG = os.path.dirname(os.path.abspath(__file__)) + '/../../../resources/urdfs/{}/'.format('bridge')
+            self.URDF = self.PKG + 'urdf/{}.urdf'.format('bridge')
         else:
-            self.PKG = os.path.dirname(os.path.abspath(__file__)) + '/../../../resources/urdfs/hyq/'
-            self.URDF = self.PKG + 'urdf/hyq.urdf'
+            self.PKG = os.path.dirname(os.path.abspath(__file__)) + '/../../../resources/urdfs/bridge/'
+            self.URDF = self.PKG + 'urdf/bridge.urdf'
 
         self.FEET = self.PKG + 'robot_data.yaml'
 
@@ -845,13 +845,13 @@ class HyQKinematics:
         target_frame = np.eye(4)
         target_frame[:3, 3] = target_vector
         if legID == 0:
-            q = self.hyq_LF_chain.inverse_kinematics(target_frame)
+            q = self.bridge_LF_chain.inverse_kinematics(target_frame)
         elif legID == 1:
-            q = self.hyq_RF_chain.inverse_kinematics(target_frame)
+            q = self.bridge_RF_chain.inverse_kinematics(target_frame)
         elif legID == 2:
-            q = self.hyq_LH_chain.inverse_kinematics(target_frame)
+            q = self.bridge_LH_chain.inverse_kinematics(target_frame)
         elif legID == 3:
-            q = self.hyq_RH_chain.inverse_kinematics(target_frame)
+            q = self.bridge_RH_chain.inverse_kinematics(target_frame)
         else:
             print("warning: leg ID is wrong")
         q_leg = q[1:4]

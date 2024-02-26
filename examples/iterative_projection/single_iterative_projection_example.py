@@ -12,6 +12,11 @@ from __future__ import print_function
 import numpy as np
 
 from numpy import array
+
+import sys 
+sys.path.append('/home/chan/feasible_region_ws/jet-leg')
+
+
 from jet_leg.plotting.plotting_tools import Plotter
 import random
 from jet_leg.computational_geometry.math_tools import Math
@@ -25,7 +30,7 @@ plt.close('all')
 math = Math()
 
 ''' Set the robot's name (either 'hyq', 'hyqreal' or 'anymal')'''
-robot_name = 'anymal'
+robot_name = 'hyq'
 
 ''' number of generators, i.e. rays/edges used to linearize the friction cone '''
 ng = 4
@@ -41,9 +46,20 @@ constraint_mode_IP = ['FRICTION_AND_ACTUATION',
                       'FRICTION_AND_ACTUATION',
                       'FRICTION_AND_ACTUATION']
 
+# constraint_mode_IP = ['ONLY_FRICTION',
+#                       'ONLY_FRICTION',
+#                       'ONLY_FRICTION',
+#                       'ONLY_FRICTION']
+
+# constraint_mode_IP = ['ONLY_ACTUATION',
+#                       'ONLY_ACTUATION',
+#                       'ONLY_ACTUATION',
+#                       'ONLY_ACTUATION']
+
 # number of decision variables of the problem
 #n = nc*6
 comWF = np.array([-0.009, 0.0001, 0.47])  # pos of COM in world frame w. trunk controller
+# comWF = np.array([0.2, 0.0001, 0.47])  # pos of COM in world frame w. trunk controller
 comBF = np.array([-0.0094, 0.0002, -0.0458])  # pos of COM in body frame w. trunk controller
 rpy = np.array([0.00001589, -0.00000726, -0.00000854])  # orientation of body frame w. trunk controller
 comWF_lin_acc = np.array([.0, .0, .0])
@@ -167,6 +183,7 @@ print('sum of vertical forces is', fz_tot)
 plotter = Plotter()
 for j in range(0,nc): # this will only show the force polytopes of the feet that are defined to be in stance
     idx = int(stanceID[j])
+    print('IP_points : '+str(np.transpose(IP_points)))
     plotter.plot_polygon(np.transpose(IP_points))
     if (constraint_mode_IP[idx] == 'ONLY_ACTUATION') or (constraint_mode_IP[idx] == 'FRICTION_AND_ACTUATION'):
         plotter.plot_actuation_polygon(ax, forcePolytopes.getVertices()[idx], contactsWF[idx,:], force_scaling_factor)

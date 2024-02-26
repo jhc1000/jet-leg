@@ -12,9 +12,12 @@ from context import jet_leg
 from numpy import array, cross, dot, eye, hstack, vstack, zeros, matrix
 from numpy.linalg import norm
 
-from jet_leg.math_tools import Math
-from jet_leg.computational_dynamics import ComputationalDynamics
-from jet_leg.iterative_projection_parameters import IterativeProjectionParameters
+import sys 
+sys.path.append('/home/chan/feasible_region_ws/jet-leg')
+
+from jet_leg.computational_geometry.math_tools import Math
+from jet_leg.dynamics.computational_dynamics import ComputationalDynamics
+from jet_leg.computational_geometry.iterative_projection_parameters import IterativeProjectionParameters
 
 import matplotlib as mpl
 import matplotlib.colors as colors
@@ -25,7 +28,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection, Line3DCollection
 from matplotlib.collections import PatchCollection
 
-from jet_leg.arrow3D import Arrow3D
+from jet_leg.plotting.arrow3D import Arrow3D
 
 def set_axes_radius(ax, origin, radius):
     ax.set_xlim3d([origin[0] - radius, origin[0] + radius])
@@ -55,6 +58,9 @@ plt.close('all')
 math = Math()
 # number of contacts
 
+''' Set the robot's name (either 'hyq', 'hyqreal' or 'anymal')'''
+robot_name = 'hyq'
+
 # number of generators, i.e. rays used to linearize the friction cone
 ng = 4
 
@@ -64,6 +70,12 @@ constraint_mode = ['ONLY_ACTUATION',
                    'ONLY_ACTUATION',
                    'ONLY_ACTUATION',
                    'ONLY_ACTUATION']
+constraint_mode = ['FRICTION_AND_ACTUATION',
+                  'FRICTION_AND_ACTUATION',
+                  'FRICTION_AND_ACTUATION',
+                  'FRICTION_AND_ACTUATION']
+
+
                    
 useVariableJacobian = False
 
@@ -84,7 +96,7 @@ stanceLegs = [1,1,1,1]
 nc = np.sum(stanceLegs)
 stanceIndex = []
 swingIndex = []
-print 'stance', stanceLegs
+print('stance', stanceLegs)
 for iter in range(0, 4):
     if stanceLegs[iter] == 1:
 #               print 'new poly', stanceIndex, iter
@@ -110,11 +122,11 @@ RF_tau_lim = [50.0, 100.0, 100.0]
 LH_tau_lim = [50.0, 100.0, 100.0]
 RH_tau_lim = [50.0, 100.0, 100.0]
 torque_limits = np.array([LF_tau_lim, RF_tau_lim, LH_tau_lim, RH_tau_lim])
-comp_dyn = ComputationalDynamics()
+comp_dyn = ComputationalDynamics(robot_name)
 
 ''' Add 2D figure '''
-mpl.rcParams['text.usetex'] = True
-mpl.rcParams['text.latex.unicode'] = True
+# mpl.rcParams['text.usetex'] = True
+# mpl.rcParams['text.latex.unicode'] = True
 fig = plt.figure(1)
 
 scale = np.linspace(50, 150, 10)
@@ -166,8 +178,8 @@ plt.legend(prop={'size': 20}, bbox_to_anchor=(1.1, 1.1))
 #plt.axis('equal')
 plt.axis([-1.25, 1.75, -1.45, 1.55])
 plt.show()
-fig.savefig('../../figs/IP_bretl/4contacts_only_actuation.pdf')
-fig.savefig('../../figs/IP_bretl/4contacts_only_actuation.png')
+# fig.savefig('../../figs/IP_bretl/4contacts_only_actuation.pdf')
+# fig.savefig('../../figs/IP_bretl/4contacts_only_actuation.png')
 
 ''' Add 3D figure '''
 
@@ -183,6 +195,11 @@ constraint_mode = ['ONLY_ACTUATION',
                    'ONLY_ACTUATION',
                    'ONLY_ACTUATION',
                    'ONLY_ACTUATION']
+
+constraint_mode = ['FRICTION_AND_ACTUATION',
+                  'FRICTION_AND_ACTUATION',
+                  'FRICTION_AND_ACTUATION',
+                  'FRICTION_AND_ACTUATION']
 
 params.setContactsPosWF(contacts)
 params.setCoMPosWF(comWF)

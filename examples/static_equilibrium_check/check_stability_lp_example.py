@@ -8,6 +8,10 @@ Created on Tue Jun 12 10:54:31 2018
 import numpy as np
 
 from numpy import array
+
+import sys 
+sys.path.append('/home/chan/feasible_region_ws/jet-leg')
+
 from jet_leg.plotting.plotting_tools import Plotter
 import random
 from jet_leg.computational_geometry.math_tools import Math
@@ -21,7 +25,7 @@ plt.close('all')
 math = Math()
 
 ''' Set the robot's name (either 'hyq', 'hyqreal' or 'anymal')'''
-robot_name = 'anymal'
+robot_name = 'hyq'
 
 ''' number of generators, i.e. rays/edges used to linearize the friction cone '''
 ng = 4
@@ -64,9 +68,9 @@ stanceFeet = [0, 1, 1, 0]
 randomSwingLeg = random.randint(0, 3)
 tripleStance = False  # if you want you can define a swing leg using this variable
 if tripleStance:
-    print 'Swing leg', randomSwingLeg
+    print('Swing leg', randomSwingLeg)
     stanceFeet[randomSwingLeg] = 0
-print 'stanceLegs ', stanceFeet
+print('stanceLegs ', stanceFeet)
 
 ''' now I define the normals to the surface of the contact points. By default they are all vertical now'''
 axisZ = array([[0.0], [0.0], [1.0]])
@@ -108,8 +112,8 @@ params.setTotalMass(comp_dyn.robotModel.robotModel.trunkMass)
 
 '''I now check whether the given CoM configuration is stable or not'''
 isConfigurationStable, contactForces, forcePolytopes = comp_dyn.check_equilibrium(params)
-print isConfigurationStable
-print 'contact forces', contactForces
+print(isConfigurationStable)
+print('contact forces', contactForces)
 
 '''Plotting the contact points in the 3D figure'''
 fig = plt.figure()
@@ -157,7 +161,7 @@ for j in range(0,
     ax.scatter(contacts[idx, 0], contacts[idx, 1], 0.0, c='k', s=100)
     ax.add_artist(a)
 
-print 'sum of vertical forces is', fz_tot
+print('sum of vertical forces is', fz_tot)
 
 ''' plotting Iterative Projection points '''
 plotter = Plotter()

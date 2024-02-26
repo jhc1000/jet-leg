@@ -11,6 +11,7 @@ from jet_leg.robots.anymal.anymal_model import AnymalModel
 from jet_leg.robots.hyqreal.hyqreal_model import HyqrealModel
 from jet_leg.robots.crex.crex_model import CrexModel
 from jet_leg.robots.aliengo.aliengo_model import AliengoModel
+from jet_leg.robots.bridge.bridge_model import BridgeModel
 
 
 class RobotModelInterface:
@@ -28,6 +29,8 @@ class RobotModelInterface:
             self.robotModel = CrexModel()
         elif self.robotName == 'aliengo':
             self.robotModel = AliengoModel()
+        elif self.robotName == 'bridge':
+            self.robotModel = BridgeModel()
             
         self.joint_torque_limits = self.robotModel.joint_torque_limits
         self.contact_torque_limits = self.robotModel.contact_torque_limits

@@ -45,11 +45,11 @@ class FeasibleWrenchPolytope():
         wrenchPolytopes = []
         stanceLegs = fwp_params.getStanceFeet()
         stanceIndex = fwp_params.getStanceIndex(stanceLegs)
-        print stanceIndex
+        print(stanceIndex)
         contactsNumber = np.sum(stanceLegs)
         for i in range(0, contactsNumber):
             index = int(stanceIndex[i])
-            print index
+            print(index)
             footPosWF = contactsWF[:, index]
             currentPolytope = np.array(forcePolygonsVertices[i])
             dim, numOfVertices = np.shape(currentPolytope)
@@ -88,10 +88,10 @@ class FeasibleWrenchPolytope():
          FRICTION_AND_ACTUATION = both friction cone constraints and joint-torque limits
         '''
         if self.constraint_modes[0] == 'FRICTION_AND_ACTUATION':
-            print 'FRICTION_AND_ACTUATION'
+            print('FRICTION_AND_ACTUATION')
             forcePolygonsVertices = self.computedPolytopeConeIntersection(params, forcePolytopes)
         elif self.constraint_modes[0] == 'ONLY_ACTUATION':
-            print 'ONLY_ACTUATION'
+            print('ONLY_ACTUATION')
             forcePolygonsVertices = forcePolytopes.getVertices()
         elif self.constraint_modes[0] == 'ONLY_FRICTION':
             forcePolygonsVertices = self.getPiramidsVertices()
@@ -115,11 +115,11 @@ class FeasibleWrenchPolytope():
         tmpSum = np.array(polytopesInContact[0])
         for j in np.arange(0, contactsNumber - 1):
             nextPolygon = np.array(polytopesInContact[j + 1])
-            print np.shape(nextPolygon)
+            print(np.shape(nextPolygon))
             tmpSum = self.vProj.minksum(tmpSum, nextPolygon)
 
-        print np.shape(tmpSum)
+        print(np.shape(tmpSum))
         currentPolygonSum = self.vProj.convex_hull(tmpSum)
-        print np.shape(currentPolygonSum)
+        print(np.shape(currentPolygonSum))
 
         return currentPolygonSum

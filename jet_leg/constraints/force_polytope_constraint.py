@@ -43,7 +43,7 @@ class ForcePolytopeConstraint:
             #            print 'Jacobians',jacobianMatrices
             actuation_polygons = self.computeActuationPolygons(jacobianMatrices, torque_limits, leg_self_weight)
             rot = Rot.from_euler('xyz', [euler_angles[0], euler_angles[1], euler_angles[2]], degrees=False)
-            W_R_B = rot.as_dcm()
+            W_R_B = rot.as_matrix()
             actuation_polygons_WF = W_R_B.dot(actuation_polygons[contact_iterator])
             ''' in the case of the IP alg. the contact force limits must be divided by the mass
 			because the gravito inertial wrench is normalized'''

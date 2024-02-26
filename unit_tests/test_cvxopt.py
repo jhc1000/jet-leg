@@ -15,7 +15,7 @@ class TestCvxopt(unittest.TestCase):
         b = matrix([ 1.0, -2.0, 0.0, 4.0 ])
         c = matrix([ 2.0, 1.0 ])    
         sol=solvers.lp(c,A,b)    
-        #print(sol['x'])
+        print(sol['x'])
         self.assertTrue(sol)
         
     def testQuadraticProgram(self):
@@ -26,7 +26,7 @@ class TestCvxopt(unittest.TestCase):
         A = matrix([1.0, 1.0], (1,2))
         b = matrix(1.0)
         sol=solvers.qp(Q, p, G, h, A, b)   
-        #print(sol['x'])
+        print(sol['x'])
         self.assertTrue(sol)
         
     def testSecondOrderConeProgram(self):
@@ -37,7 +37,7 @@ class TestCvxopt(unittest.TestCase):
         G += [ matrix( [[3., 3., -1., 1.], [-6., -6., -9., 19.], [10., -2., -2., -3.]] ) ]     
         h = [ matrix( [-12., -3., -2.] ),  matrix( [27., 0., 3., -42.] ) ]
         sol = solvers.socp(c, Gq = G, hq = h)  
-        #print(sol['x'])
+        print(sol['x'])
         self.assertTrue(sol)
         
 

@@ -1,6 +1,6 @@
 import numpy as np
 
-class HyqModel:
+class BridgeModel:
     def __init__(self):
 
         self.trunkMass = 85
